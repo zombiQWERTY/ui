@@ -1,11 +1,11 @@
 import { useCallback, MouseEvent } from "react";
 
+export type OnClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
+
 export interface OnButtonClick {
   disabled: boolean;
   baseOnClick: (evt: OnClickEvent) => void;
 }
-
-type OnClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
 
 export const useOnButtonClick = (props: OnButtonClick) => {
   const { baseOnClick, disabled } = props;

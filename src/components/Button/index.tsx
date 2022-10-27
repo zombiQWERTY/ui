@@ -1,14 +1,11 @@
-import { MouseEvent } from "react";
 import Link, { LinkProps } from "next/link";
-import { useOnButtonClick } from "./hooks/useOnButtonClick";
+import { OnClickEvent, useOnButtonClick } from "./hooks/useOnButtonClick";
 import { useOnMakeClassNames } from "../hooks/useOnMakeClassNames";
 import { useOnSetBgColor } from "../hooks/useOnSetBgColor";
 import { Size, useOnMakeStyles } from "../hooks/useOnMakeStyles";
 import { DefaultBgColors, DEFAULT_BUTTON_BG_COLOR } from "../../theme";
 
 type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-
-type OnClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
 
 export type ButtonProps = {
   children?: React.ReactNode;
