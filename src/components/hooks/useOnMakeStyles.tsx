@@ -20,11 +20,10 @@ export const useOnMakeStyles = (props: OnMakeStyles) => {
     () => ({
       ...internalStyle,
       ...(style ?? {}),
-      ...{
-        width: isValidCSSValue(size?.width) ? size?.width : "",
-        maxWidth: isValidCSSValue(size?.width) ? size?.width : "",
-        height: isValidCSSValue(size?.height) ? size?.height : "",
-      },
+      ...(isValidCSSValue(size?.width)
+        ? { width: size?.width, maxWidth: size?.width }
+        : {}),
+      height: isValidCSSValue(size?.height) ? size?.height : "",
     }),
     [internalStyle, style, size]
   );
