@@ -14,14 +14,6 @@ yarn
 yarn add https://github.com/zombiQWERTY/ui/tree/build
 ```
 
-## Importing
-
-ES6 imports:
-
-```js
-import { FacebookLoginButton } from "react-social-login-buttons";
-```
-
 ## Props
 
 Props for every Button
