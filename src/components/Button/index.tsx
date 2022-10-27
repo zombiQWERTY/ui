@@ -27,7 +27,8 @@ type ButtonFCProps = Partial<
   Pick<ButtonProps, "children" | "style" | "className" | "onClick">
 > & {
   role: "button";
-} & { type: ButtonType };
+  type: ButtonType;
+};
 type LinkFCProps = ButtonFCProps & { href: LinkProps["href"] };
 
 const ButtonFC: React.FC<ButtonFCProps> = (props: ButtonFCProps) => (
