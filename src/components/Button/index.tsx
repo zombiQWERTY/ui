@@ -24,10 +24,9 @@ export type ButtonProps = {
 };
 
 type ButtonFCProps = Partial<
-  Pick<ButtonProps, "children" | "style" | "className" | "onClick">
+  Pick<ButtonProps, "children" | "style" | "className" | "onClick" | "type">
 > & {
   role: "button";
-  type: ButtonType;
 };
 type LinkFCProps = ButtonFCProps & { href: LinkProps["href"] };
 
