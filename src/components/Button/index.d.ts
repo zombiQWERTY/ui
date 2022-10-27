@@ -1,0 +1,20 @@
+import { MouseEvent } from "react";
+import { LinkProps } from "next/link";
+import { Size } from "../hooks/useOnMakeStyles";
+import { DefaultBgColors } from "../../theme";
+declare type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+declare type OnClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
+export declare type ButtonProps = {
+    children?: React.ReactNode;
+    className?: string;
+    disabled?: boolean;
+    element?: React.FC<Record<string, any>>;
+    href?: LinkProps["href"];
+    size?: Size;
+    bgColor?: DefaultBgColors | string;
+    style?: React.CSSProperties;
+    type?: ButtonType;
+    onClick?: (evt: OnClickEvent) => void;
+};
+export declare const Button: ({ children, className, disabled, element, href, size, bgColor, style, type, onClick, }: ButtonProps) => JSX.Element;
+export {};
