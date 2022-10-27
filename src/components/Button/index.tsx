@@ -1,13 +1,10 @@
-import { useState, MouseEvent } from "react";
+import { MouseEvent } from "react";
 import Link, { LinkProps } from "next/link";
-import { useOnMakeClassNames } from "./hooks/onMakeClassNames";
-import { useOnButtonClick } from "./hooks/onButtonClick";
-import {
-  ButtonBgColor,
-  DEFAULT_BG_COLOR,
-  useOnSetBgColor,
-} from "./hooks/onSetBgColor";
-import { Size, useOnMakeStyles } from "./hooks/onMakeStyles";
+import { useOnButtonClick } from "./hooks/useOnButtonClick";
+import { useOnMakeClassNames } from "../hooks/useOnMakeClassNames";
+import { useOnSetBgColor } from "../hooks/useOnSetBgColor";
+import { Size, useOnMakeStyles } from "../hooks/useOnMakeStyles";
+import { DefaultBgColors, DEFAULT_BUTTON_BG_COLOR } from "../../theme";
 
 type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
 
@@ -20,7 +17,7 @@ export type ButtonProps = {
   element?: React.FC<Record<string, any>>;
   href?: LinkProps["href"];
   size?: Size;
-  bgColor?: ButtonBgColor | string;
+  bgColor?: DefaultBgColors | string;
   style?: React.CSSProperties;
   type?: ButtonType;
   onClick?: (evt: OnClickEvent) => void;
@@ -49,6 +46,9 @@ const LinkFC: React.FC<LinkFCProps> = (props: LinkFCProps) => {
   );
 };
 
+const disablifyClassName = (className?: string) =>
+  `${className || ""} bg-gray-500 hover:bg-gray-500`;
+
 export const Button = ({
   children = null,
   className,
@@ -56,14 +56,11 @@ export const Button = ({
   element,
   href,
   size,
-  bgColor = DEFAULT_BG_COLOR,
+  bgColor = DEFAULT_BUTTON_BG_COLOR,
   style,
   type = "button",
   onClick,
 }: ButtonProps) => {
-  const [internalStyle, setInternalStyle] = useState<React.CSSProperties>({});
-  const [internalClassNames, setInternalClassNames] = useState<string[]>([]);
-
   const RenderFC = element || (href ? LinkFC : ButtonFC);
 
   const { onClick: handleAction } = useOnButtonClick({
@@ -71,16 +68,14 @@ export const Button = ({
     disabled,
   });
 
-  useOnSetBgColor({
-    setInternalClassNames,
-    setInternalStyle,
+  const { internalStyle, internalClassNames } = useOnSetBgColor({
     bgColor,
-    disabled,
+    bgHoverable: true,
   });
 
   const { rootClassName } = useOnMakeClassNames({
     internalClassNames,
-    className,
+    className: disabled ? disablifyClassName(className) : className,
   });
 
   const { rootStyle } = useOnMakeStyles({ internalStyle, style, size });

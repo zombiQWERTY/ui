@@ -22,6 +22,7 @@ export const useOnMakeStyles = (props: OnMakeStyles) => {
       ...(style ?? {}),
       ...{
         width: isValidCSSValue(size?.width) ? size?.width : "",
+        maxWidth: isValidCSSValue(size?.width) ? size?.width : "",
         height: isValidCSSValue(size?.height) ? size?.height : "",
       },
     }),
